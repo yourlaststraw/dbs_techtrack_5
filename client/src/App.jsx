@@ -16,36 +16,36 @@ function App() {
     sessionStorage.getItem("customerId") || undefined
   );
 
-  const setUserAuthenticatedStatus = (isAdmin, customerId) => {
+/*   const setUserAuthenticatedStatus = (isAdmin, customerId) => {
     setUserAuthorization(true);
     setAdmin(isAdmin);
     setCustomerId(customerId);
-  };
+  }; */
 
   const handleLogout = () => {
-    sessionStorage.removeItem("isUserAuthenticated");
+/*     sessionStorage.removeItem("isUserAuthenticated");
     sessionStorage.removeItem("isAdmin");
     sessionStorage.removeItem("customerId");
     sessionStorage.removeItem("jwt_token");
     sessionStorage.removeItem("jwt_refresh_token");
     setUserAuthorization(false);
     setAdmin(false);
-    setCustomerId(undefined);
-    window.location.href = "/"; // Redirect to Home page
+    setCustomerId(undefined); */
+    window.location.href = "/profile"; // Redirect to Home page
   };
 
   const renderPage = () => {
     const path = window.location.pathname;
 
     // If user is not authenticated, show login/register form
-    if (!isUserAuthenticated) {
+/*     if (!isUserAuthenticated) {
       return (
         <LoginRegisterForm
           setUserAuthenticatedStatus={setUserAuthenticatedStatus}
         />
       );
     }
-
+ */
     // Render pages based on pathname
     switch (path) {
       case "/profile":
@@ -73,8 +73,8 @@ function App() {
     <div>
       {/* Navigation Bar */}
       <nav className="navbar">
-        <h1>My App</h1>
-        {isUserAuthenticated && (
+        <h1>CarbonCredit</h1>
+        { 
           <ul className="nav-links">
             <li>
               <a
@@ -84,7 +84,7 @@ function App() {
                   window.location.href = "/";
                 }}
               >
-                Home
+              Home
               </a>
             </li>
             <li>
@@ -113,11 +113,11 @@ function App() {
             )}
             <li>
               <button onClick={handleLogout} className="logout-button">
-                Logout
+              Logout
               </button>
             </li>
           </ul>
-        )}
+        }
       </nav>
 
       {/* Main Content */}
