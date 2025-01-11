@@ -63,8 +63,6 @@ router.post("/register", [
         console.log("Comapny Register route", err.message)
         return res.status(500).send('Server error')
     }
-
-
 })
 
 // @route   POST /api/auth/Login
@@ -110,10 +108,7 @@ router.post('/login', [
                     if (error) throw error;
                     return res.json({ token })
                 }
-
             )
-
-
         } catch (err) {
             console.error("Company Login route. ", err.message)
             res.status(500).send("Server Error")
