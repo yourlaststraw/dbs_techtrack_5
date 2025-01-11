@@ -140,6 +140,64 @@ const OutstandingRequests = () => {
     </div>
   );
 
+  const [showAcceptSelected, setShowAcceptSelected] = useState(false);
+  const handleAcceptSelected = () => {
+    setShowAcceptSelected(true);
+  };
+  const AcceptSelectedModal = () => (
+    <div class="modal" hidden={!showAcceptSelected}>
+      <div class="modal-content">
+        <span class="close" onClick={() => setShowAcceptSelected(false)}>
+          &times;
+        </span>
+        <h2>Accept All Selected Requests?</h2>
+        <div className="button-container">
+          <button
+            className="accept-button"
+            //onClick={() => handleAcceptRequest(currRequest)}
+          >
+            Confirm
+          </button>
+          <button
+            className="reject-button"
+            onClick={() => setShowAcceptSelected(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
+  const [showRejectSelected, setShowRejectSelected] = useState(false);
+  const handleRejectSelected = () => {
+    setShowRejectSelected(true);
+  };
+  const RejectSelectedModal = () => (
+    <div class="modal" hidden={!showRejectSelected}>
+      <div class="modal-content">
+        <span class="close" onClick={() => setShowRejectSelected(false)}>
+          &times;
+        </span>
+        <h2>Reject All Selected Requests?</h2>
+        <div className="button-container">
+          <button
+            className="accept-button"
+            //onClick={() => handleAcceptRequest(currRequest)}
+          >
+            Confirm
+          </button>
+          <button
+            className="reject-button"
+            onClick={() => setShowRejectSelected(false)}
+          >
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+
   /*useEffect(() => {
     axios
       .get(`${getBaseURL()}api/cart/${customerId}`)
@@ -164,6 +222,8 @@ const OutstandingRequests = () => {
     <>
       <AcceptModal />
       <RejectModal />
+      <AcceptSelectedModal />
+      <RejectSelectedModal />
       <h1>Outstanding Requests from Companies</h1>
       <div>
         <table>
@@ -216,6 +276,14 @@ const OutstandingRequests = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="button-container">
+        <button className="accept-button" onClick={handleAcceptSelected}>
+          Accept Selected
+        </button>
+        <button className="reject-button" onClick={handleRejectSelected}>
+          Reject Selected
+        </button>
       </div>
     </>
   );
