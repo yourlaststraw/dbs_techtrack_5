@@ -1,28 +1,41 @@
 const mongoose = require('mongoose')
 
-const companySchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true
+const companyAccountSchema = new mongoose.Schema({
+    companyId: {
+        type: Number,
+        required: true,
+        unique: true
     },
-    email: {
+    companyName: {
         type: String,
         required: true,
         unique: true
     },
     password: {
         type: String,
-        required: true
+        required: true,
     },
-    avatar: {
-        type: String,
+    carbonBalance: {
+        type: Number,
+        default: 0,
     },
-    date: {
+
+    cashBalance: {
+        type: Number,
+        default: 0,
+    },
+
+    createdDatetime: {
         type: Date,
         default: Date.now
+    },
+
+    updatedDatetime: {
+        type:Date,
+        default:Date.now
     }
 });
 
-const CompanyAccount = mongoose.model('company', companySchema)
+const CompanyAccount = mongoose.model('company', companyAccountSchema)
 
 module.exports = CompanyAccount;
