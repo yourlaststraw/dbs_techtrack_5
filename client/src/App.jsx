@@ -81,7 +81,7 @@ function App() {
     <div>
       {/* Navigation Bar */}
       <nav className="navbar">
-        <h1>My App</h1>
+        <h1>Carbon Credit App</h1>
         {isUserAuthenticated && (
           <ul className="nav-links">
             <li>
