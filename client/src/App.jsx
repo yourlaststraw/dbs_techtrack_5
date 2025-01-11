@@ -97,13 +97,13 @@ function App() {
             </li>
             <li>
               <a
-                href="/profile"
+                href="/outstanding"
                 onClick={(e) => {
                   e.preventDefault();
-                  window.location.href = "/profile";
+                  window.location.href = "/outstanding";
                 }}
               >
-                Profile
+                Outstanding
               </a>
             </li>
             {isAdmin && (
