@@ -198,6 +198,42 @@ const OutstandingRequests = () => {
     </div>
   );
 
+  const [showOverdue, setShowOverdue] = useState(true);
+  const OverdueModal = () => (
+    <div class="modal" hidden={!showOverdue}>
+      <div class="modal-content">
+        <span class="close" onClick={() => setShowOverdue(false)}>
+          &times;
+        </span>
+        <h2>Overdue Requests</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Request Date</th>
+              <th>Company Name</th>
+              <th>Carbon Price (SGD/Tonnes)</th>
+              <th>Carbon Quantity</th>
+              <th>Requesting Reason</th>
+              <th>Request Type (Buy/Sell)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {outstandingRequests?.map((request) => 
+              <tr>
+                <td>{request?.request_date}</td>
+                <td>{request?.company_name}</td>
+                <td>{request?.carbon_price}</td>
+                <td>{request?.carbon_quantity}</td>
+                <td>{request?.reason}</td>
+                <td>{request?.type}</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+
   /*useEffect(() => {
     axios
       .get(`${getBaseURL()}api/cart/${customerId}`)
@@ -224,6 +260,7 @@ const OutstandingRequests = () => {
       <RejectModal />
       <AcceptSelectedModal />
       <RejectSelectedModal />
+      <OverdueModal />
       <h1>Outstanding Requests from Companies</h1>
       <div>
         <table>
