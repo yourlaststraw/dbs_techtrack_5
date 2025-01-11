@@ -1,0 +1,61 @@
+.button-container {
+    display: flex;
+    align-items: center;
+    padding-top:10px;
+}
+
+.accept-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.accept-button:hover {
+    background-color: #45a049;
+}
+
+.reject-button {
+    background-color: #ce3a3a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.reject-button:hover {
+    background-color: #ab1010;
+}
+
+/* Edit Modal */
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    overflow: scroll;
+  }
+  
+  .close {
+    float: right;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    cursor: pointer;
+  }
