@@ -116,4 +116,15 @@ router.post('/login', [
         }
     })
 
+
+router.get("/", verifyToken, async (req, res) => {
+    try {
+        console.log("Company ID: ", req.company.id)
+        return res.json(req.company.id)
+    } catch (err) {
+        console.error(err.message)
+        return res.status(500).send("Server Error")
+    }
+})
+
 export default router;
