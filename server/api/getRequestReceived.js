@@ -1,10 +1,11 @@
 import express from 'express';
 import outstandingRequest from './models/outstandingRequest.js' // Adjust the path as needed
+import { verifyToken } from '../middleware/jwtAuth.js'
 
 const router = express.Router();
 
 // GET request to retrieve company details by companyName
-router.get('/get-outstanding-requests', async (req, res) => {
+router.get('/get-outstanding-requests', verifyToken, async (req, res) => {
     try {
         const { companyId } = req.company.id; // Extract companyId from the request body
 
@@ -14,7 +15,7 @@ router.get('/get-outstanding-requests', async (req, res) => {
 
         // Find the company by companyName
         const company = await outstandingRequest.findOne(
-            { companyId }, // Query to find the company by name
+            {_id: companyId }, // Query to find the company by name
             'createdDatetime requestorCompanyId carbonUnitPrice carbonQuantity requestReason requestType' // Fields to include in the result
         );
 
