@@ -41,6 +41,10 @@ const OutstandingRequests = () => {
     setCurrRequest(request);
     setShowAccept(true);
   };
+  // TODO
+  const handleAcceptRequest = (request) => {
+
+  };
   const AcceptModal = () => (
     <div class="modal" hidden={!showAccept}>
       <div class="modal-content">
@@ -73,7 +77,7 @@ const OutstandingRequests = () => {
         <div className="button-container">
           <button
             className="accept-button"
-            //onClick={() => handleAcceptRequest(currRequest)}
+            onClick={() => handleAcceptRequest(currRequest)}
           >
             Confirm
           </button>
@@ -92,6 +96,10 @@ const OutstandingRequests = () => {
   const handleReject = (request) => {
     setCurrRequest(request);
     setShowReject(true);
+  };
+  // TODO
+  const handleRejectRequest = (request) => {
+    
   };
   const RejectModal = () => (
     <div class="modal" hidden={!showReject}>
@@ -125,7 +133,7 @@ const OutstandingRequests = () => {
         <div className="button-container">
           <button
             className="accept-button"
-            //onClick={() => handleRejectRequest(currRequest)}
+            onClick={() => handleRejectRequest(currRequest)}
           >
             Confirm
           </button>
@@ -144,6 +152,10 @@ const OutstandingRequests = () => {
   const handleAcceptSelected = () => {
     setShowAcceptSelected(true);
   };
+  // TODO
+  const handleAcceptSelectedRequest = () => {
+    let selected = checked;
+  };
   const AcceptSelectedModal = () => (
     <div class="modal" hidden={!showAcceptSelected}>
       <div class="modal-content">
@@ -154,7 +166,7 @@ const OutstandingRequests = () => {
         <div className="button-container">
           <button
             className="accept-button"
-            //onClick={() => handleAcceptRequest(currRequest)}
+            onClick={() => handleAcceptSelectedRequest()}
           >
             Confirm
           </button>
@@ -173,6 +185,9 @@ const OutstandingRequests = () => {
   const handleRejectSelected = () => {
     setShowRejectSelected(true);
   };
+  const handleRejectSelectedRequest = () => {
+    let selected = checked;
+  }
   const RejectSelectedModal = () => (
     <div class="modal" hidden={!showRejectSelected}>
       <div class="modal-content">
@@ -183,7 +198,7 @@ const OutstandingRequests = () => {
         <div className="button-container">
           <button
             className="accept-button"
-            //onClick={() => handleAcceptRequest(currRequest)}
+            onClick={() => handleRejectSelectedRequest()}
           >
             Confirm
           </button>
@@ -218,6 +233,7 @@ const OutstandingRequests = () => {
             </tr>
           </thead>
           <tbody>
+            {/* TODO add filters */}
             {outstandingRequests?.map((request) => 
               <tr>
                 <td>{request?.request_date}</td>
