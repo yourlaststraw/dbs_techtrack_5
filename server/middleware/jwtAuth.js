@@ -1,17 +1,28 @@
 import jwt from "jsonwebtoken";
 
 export const verifyToken = (request, response, next) => {
-    console.log(request.cookies);
-    const token = request.cookies.jwt;
-    console.log({token});
+    // Get token from header
+    const token = req.header('x-auth-token')
+
+    // Check if no token
     if (!token) {
-        return response.status(401).send("You are not authenticated");
+        return res.status(401).json({ msg: 'No token, not authorised' })
     }
+
     jwt.verify(token, process.env.JWT_KEY, async (error, decoded) => {
         if (error) {
             return response.status(403).send("Token is invalid");
         }
-        request.userId = decoded.userId;
+        request.company = decoded.company;
+        /* jwt payload from register user route:
+        decoded = {
+            company: {
+                id: company.id
+            }
+        }
+        */
+
+        req.company.id
         next();
     });
 }
