@@ -26,7 +26,7 @@ const CustomerOrders = (props) => {
         <table>
           <thead>
             <tr>
-              <th>Order Id</th>
+              <th>Id</th>
               <th>Product Name</th>
               <th>Order Date</th>
               <th>Quantity</th>

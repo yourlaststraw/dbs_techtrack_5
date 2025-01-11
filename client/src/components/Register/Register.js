@@ -14,18 +14,22 @@ function Register(props) {
   const handleUserRegistration = () => {
     if (validateInputs()) {
       const newUser = {
-        email: email,
+        companyName: email,
         password: pass,
-        isAdmin: isAdmin,
-        fname: fname,
-        lname: lname,
       };
 
-      let url = `${getBaseURL()}api/users/register`;
+      let url = `http://localhost:8747/api/auth/register`;
+
+      const config = {
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }
+      const body = JSON.stringify(newUser)
       axios
-        .post(url, { ...newUser })
+        .post(url, body, config)
         .then((res) => {
-          if (res.data != null) {
+          if (res.status == 200) {
             console.log("User registered successfully");
             props.navigateToLoginPage();
           }
@@ -34,26 +38,18 @@ function Register(props) {
     }
   };
 
-  const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
+
 
   const validatePassword = (password) => {
     return password.length >= 6;
   };
 
   const validateInputs = () => {
-    if (!validateEmail(email)) {
+    if (email=="") {
       setError("Please provide a valid email address.");
       return false;
-    } else if (fname.trim() === "") {
-      setError("Please provide your first name.");
-      return false;
-    } else if (lname.trim() === "") {
-      setError("Please provide your last name.");
-      return false;
-    } else if (!validatePassword(pass)) {
+    }  
+    else if (!validatePassword(pass)) {
       setError("Password must be at least 6 characters long.");
       return false;
     }
