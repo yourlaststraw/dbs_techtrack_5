@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRouter from "./api/auth.js"
-
+import getBalancesRouter from "./api/getBalances.js"
 
 dotenv.config();
 
@@ -32,7 +32,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/auth', authRouter)
-
+app.use('/api/balances', getBalancesRouter)
 
 app.get('/', (req, res) => res.send("API Running"))
 

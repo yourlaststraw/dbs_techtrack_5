@@ -1,5 +1,5 @@
 import express from 'express';
-import CompanyAccount from './models/CompanyAccount.js'; // Adjust the path as needed
+import CompanyAccount from '../models/companyAccount.js'; // Adjust the path as needed
 
 const router = express.Router();
 
