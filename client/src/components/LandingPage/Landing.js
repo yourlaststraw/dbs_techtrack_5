@@ -197,7 +197,7 @@ function Landing () {
             />
           </label>
 
-          <button>Submit</button>
+          <button className="accept-button">Submit</button>
         </form>    
 
 
