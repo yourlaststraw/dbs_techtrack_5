@@ -40,13 +40,13 @@ function App() {
     const path = window.location.pathname;
 
     // If user is not authenticated, show login/register form
-    // if (!isUserAuthenticated) {
-    //   return (
-    //     <LoginRegisterForm
-    //       setUserAuthenticatedStatus={setUserAuthenticatedStatus}
-    //     />
-    //   );
-    // }
+     if (!isUserAuthenticated) {
+      return (
+         <LoginRegisterForm
+           setUserAuthenticatedStatus={setUserAuthenticatedStatus}
+         />
+      );
+     }
 
     // Render pages based on pathname
     switch (path) {
