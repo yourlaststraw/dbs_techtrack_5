@@ -16,7 +16,7 @@ function Login(props) {
         email: uname,
         password: password,
       };
-      let url = `${getBaseURL()}api/users/login`;
+      let url = `api/users/login`;
       axios
         .post(url, { ...user })
         .then((res) => {
