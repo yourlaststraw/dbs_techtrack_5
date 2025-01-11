@@ -6,7 +6,7 @@ export const verifyToken = (request, response, next) => {
 
     // Check if no token
     if (!token) {
-        return res.status(401).json({ msg: 'No token, not authorised' })
+        return response.status(401).json({ msg: 'No token, not authorised' })
     }
 
     jwt.verify(token, process.env.JWT_KEY, async (error, decoded) => {
