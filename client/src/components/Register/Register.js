@@ -69,14 +69,14 @@ function Register(props) {
     <div className="register-container">
       <h1>Register</h1>
       <div>
-        <label>E-Mail</label>
+        <label>Company Name</label>
         <input
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         ></input>
       </div>
-      <div>
+      {/* <div>
         <label>First Name</label>
         <input
           type="text"
@@ -91,7 +91,7 @@ function Register(props) {
           value={lname}
           onChange={(e) => setLname(e.target.value)}
         ></input>
-      </div>
+      </div> */}
       <div>
         <label>Password</label>
         <input
@@ -102,25 +102,6 @@ function Register(props) {
       </div>
       {error && <div className="error-message">{error}</div>}
       <div className="radio-group">
-        <input
-          type="radio"
-          id="customer"
-          name="role"
-          value="0"
-          checked={isAdmin === "0"}
-          onChange={() => updateAdmin("0")}
-        />
-        <label htmlFor="customer">Customer</label>
-        <br />
-        <input
-          type="radio"
-          id="admin"
-          name="role"
-          value="1"
-          checked={isAdmin === "1"}
-          onChange={() => updateAdmin("1")}
-        />
-        <label htmlFor="admin">Admin</label>
       </div>
       <div>
         <button onClick={handleUserRegistration}>Register</button>
