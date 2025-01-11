@@ -1,5 +1,6 @@
 import express from 'express';
 import outstandingRequest from './models/outstandingRequest.js' // Adjust the path as needed
+
 const router = express.Router();
 
 // GET request to retrieve company details by companyName
