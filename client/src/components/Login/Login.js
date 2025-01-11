@@ -16,7 +16,7 @@ function Login(props) {
         companyName: uname,
         password: password,
       };
-      let url = `http://localhost:8747/api/auth/register`;
+      let url = `http://localhost:8747/api/auth/login`;
       const config = {
         headers:{
           'Content-Type': 'application/json'
@@ -38,7 +38,9 @@ function Login(props) {
             axios.defaults.headers.common['x-auth-token'] = token
             /* sessionStorage.setItem("jwt_refresh_token", res.data[0].refreshToken); */
             /* TokenRefresher(res.data[0].refreshToken); */
-            props.setUserAuthenticatedStatus(user ? true : false, res.data[0].userId);
+            /* props.setUserAuthenticatedStatus(user ? true : false, res.data[0].userId);
+             */
+            window.location.href = "/Landing"
           } else {
             console.log("User not available");
           }
@@ -64,8 +66,8 @@ function Login(props) {
 
   // Function to validate inputs
   function validateInputs() {
-    if (!validateEmail(uname)) {
-      setError("Please provide a valid email address.");
+    if (uname == "") {
+      setError("Please provide a valid name.");
       return false;
     } else if (!validatePassword(password)) {
       setError("Password must be at least 6 characters long.");

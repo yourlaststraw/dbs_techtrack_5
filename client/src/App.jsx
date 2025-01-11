@@ -4,8 +4,8 @@ import LoginRegisterForm from "./components/LoginRegisterContainer/LoginRegister
 import AdminCustomerContainer from "./components/AdminCustomerContainer/AdminCustomerContainer";
 import Profile from "./pages/Profile";
 import AdminPanel from "./pages/AdminPanel";
+import OutstandingRequestsPage from "./pages/OutstandingRequestsPage";
 import LandingPage from "./pages/LandingPage";
-
 
 function App() {
   let [isUserAuthenticated, setUserAuthorization] = useState(
@@ -52,6 +52,9 @@ function App() {
     switch (path) {
       case "/profile":
         return <Profile customerId={customerId} />;
+
+      case "/outstanding":
+        return <OutstandingRequestsPage />
 
       case "/Landing":
         return <LandingPage />;
