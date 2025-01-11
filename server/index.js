@@ -22,7 +22,9 @@ try {
   process.exit(1);
 }
 
-app.use(cors());
+
+app.use(cors())
+
 
 app.use(cookieParser());
 app.use(express.json());
