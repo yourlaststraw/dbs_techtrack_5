@@ -25,11 +25,7 @@ try {
   process.exit(1);
 }
 
-app.use(cors({
-  origin: [process.env.ORIGIN],
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-  credentials: true, // we need to enable cookies hence credentials need to be set to true
-}));
+app.use(cors());
 
 app.use(cookieParser());
 app.use(express.json());
