@@ -5,7 +5,11 @@ import "./OutstandingRequests.scss";
 
 const OutstandingRequests = () => {
   // hardcoded test data
-  const [outstandingRequests, setOutstandingRequests] = useState([{request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type"}]);
+  const [outstandingRequests, setOutstandingRequests] = useState([
+    { id: 1, request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type" },
+    { id: 2, request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type" },
+    { id: 3, request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type" }
+  ]);
   
   /*useEffect(() => {
     axios
@@ -46,7 +50,7 @@ const OutstandingRequests = () => {
               </thead>
               <tbody>
                 {outstandingRequests.map((request) => (
-                  <tr>
+                  <tr key={request.id}>
                     <td><input type="checkbox" onChange={(e) => onCheckedChange(request.id, e.target.checked)}/></td>
                     <td>{request.request_date}</td>
                     <td>{request.company_name}</td>
@@ -55,7 +59,7 @@ const OutstandingRequests = () => {
                     <td>{request.reason}</td>
                     <td>{request.type}</td>
                     <td>
-                      <div className="address-container">
+                      <div className="button-container">
                         <button className="accept-button"
                         >
                           Accept
