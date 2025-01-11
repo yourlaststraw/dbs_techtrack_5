@@ -81,7 +81,7 @@ function Login(props) {
       <div className="login-container">
         <h1>Login</h1>
         <div>
-          <label>E-Mail</label>
+          <label>Company Name</label>
           <input type="text" value={uname} onChange={changeName}></input>
         </div>
         <div>
