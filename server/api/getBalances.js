@@ -6,15 +6,15 @@ const router = express.Router();
 // GET request to retrieve company details by companyName
 router.get('/company-details', async (req, res) => {
     try {
-        const { companyName } = req.body; // Extract companyName from the request body
+        const { companyId } = req.company.id; // Extract companyName from the request body
 
-        if (!companyName) {
-            return res.status(400).json({ message: "companyName not present" });
+        if (!companyId) {
+            return res.status(400).json({ message: "companyName not present"});
         }
 
         // Find the company by companyName
         const company = await CompanyAccount.findOne(
-            { companyName }, // Query to find the company by name
+            { companyId }, // Query to find the company by name
             'companyName cashBalance carbonBalance' // Fields to include in the result
         );
 
