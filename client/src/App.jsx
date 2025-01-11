@@ -4,6 +4,7 @@ import LoginRegisterForm from "./components/LoginRegisterContainer/LoginRegister
 import AdminCustomerContainer from "./components/AdminCustomerContainer/AdminCustomerContainer";
 import Profile from "./pages/Profile";
 import AdminPanel from "./pages/AdminPanel";
+import OutstandingRequestsPage from "./pages/OutstandingRequestsPage";
 
 function App() {
   let [isUserAuthenticated, setUserAuthorization] = useState(
@@ -38,19 +39,21 @@ function App() {
     const path = window.location.pathname;
 
     // If user is not authenticated, show login/register form
-    if (!isUserAuthenticated) {
+    /*if (!isUserAuthenticated) {
       return (
         <LoginRegisterForm
           setUserAuthenticatedStatus={setUserAuthenticatedStatus}
         />
       );
-    }
+    }*/
 
     // Render pages based on pathname
     switch (path) {
       case "/profile":
         return <Profile customerId={customerId} />;
 
+      case "/outstanding":
+        return <OutstandingRequestsPage />
       case "/admin":
         return isAdmin ? (
           <AdminPanel />
