@@ -40,10 +40,11 @@ function Login(props) {
             /* TokenRefresher(res.data[0].refreshToken); */
             /* props.setUserAuthenticatedStatus(user ? true : false, res.data[0].userId);
              */
-            window.location.href = "/Landing"
           } else {
             console.log("User not available");
           }
+
+          window.location.href = "/Landing"
         })
         .catch((err) => {
           console.log(err);
