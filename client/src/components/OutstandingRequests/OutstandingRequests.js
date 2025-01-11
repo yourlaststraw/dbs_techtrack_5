@@ -6,40 +6,140 @@ import "./OutstandingRequests.scss";
 const OutstandingRequests = () => {
   // hardcoded test data
   const [outstandingRequests, setOutstandingRequests] = useState([
-    { id: 1, request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type" },
-    { id: 2, request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type" },
-    { id: 3, request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type" }
+    {
+      id: 1,
+      request_date: "date",
+      company_name: "company_name",
+      carbon_price: "carbon_price",
+      carbon_quantity: "quantity",
+      reason: "Reason",
+      type: "type",
+    },
+    {
+      id: 2,
+      request_date: "date",
+      company_name: "company_name",
+      carbon_price: "carbon_price",
+      carbon_quantity: "quantity",
+      reason: "Reason",
+      type: "type",
+    },
+    {
+      id: 3,
+      request_date: "date",
+      company_name: "company_name",
+      carbon_price: "carbon_price",
+      carbon_quantity: "quantity",
+      reason: "Reason",
+      type: "type",
+    },
   ]);
 
   const [currRequest, setCurrRequest] = useState(null);
-  const [showAccept, setShowAccept] = useState(true);
+  const [showAccept, setShowAccept] = useState(false);
   const handleAccept = (request) => {
     setCurrRequest(request);
-    setShowAccept(false);
-  }
+    setShowAccept(true);
+  };
   const AcceptModal = () => (
-    <div class="modal" hidden={showAccept}>
+    <div class="modal" hidden={!showAccept}>
       <div class="modal-content">
-        <span class="close" onClick={() => setShowAccept(true)}>&times;</span>
-        <p>Accept Request?</p>
+        <span class="close" onClick={() => setShowAccept(false)}>
+          &times;
+        </span>
+        <h2>Accept Request?</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Request Date</th>
+              <th>Company Name</th>
+              <th>Carbon Price (SGD/Tonnes)</th>
+              <th>Carbon Quantity</th>
+              <th>Requesting Reason</th>
+              <th>Request Type (Buy/Sell)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{currRequest?.request_date}</td>
+              <td>{currRequest?.company_name}</td>
+              <td>{currRequest?.carbon_price}</td>
+              <td>{currRequest?.carbon_quantity}</td>
+              <td>{currRequest?.reason}</td>
+              <td>{currRequest?.type}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="button-container">
+          <button
+            className="accept-button"
+            //onClick={() => handleAcceptRequest(currRequest)}
+          >
+            Confirm
+          </button>
+          <button
+            className="reject-button"
+            onClick={() => setShowAccept(false)}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
-  )
+  );
 
-  const [showReject, setShowReject] = useState(true);
+  const [showReject, setShowReject] = useState(false);
   const handleReject = (request) => {
     setCurrRequest(request);
-    setShowReject(false);
-  }
+    setShowReject(true);
+  };
   const RejectModal = () => (
-    <div class="modal" hidden={showReject}>
+    <div class="modal" hidden={!showReject}>
       <div class="modal-content">
-        <span class="close" onClick={() => setShowReject(true)}>&times;</span>
-        <p>Reject Request?</p>
+        <span class="close" onClick={() => setShowReject(false)}>
+          &times;
+        </span>
+        <h2>Reject Request?</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Request Date</th>
+              <th>Company Name</th>
+              <th>Carbon Price (SGD/Tonnes)</th>
+              <th>Carbon Quantity</th>
+              <th>Requesting Reason</th>
+              <th>Request Type (Buy/Sell)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{currRequest?.request_date}</td>
+              <td>{currRequest?.company_name}</td>
+              <td>{currRequest?.carbon_price}</td>
+              <td>{currRequest?.carbon_quantity}</td>
+              <td>{currRequest?.reason}</td>
+              <td>{currRequest?.type}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div className="button-container">
+          <button
+            className="accept-button"
+            //onClick={() => handleRejectRequest(currRequest)}
+          >
+            Confirm
+          </button>
+          <button
+            className="reject-button"
+            onClick={() => setShowReject(false)}
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
-  )
-  
+  );
+
   /*useEffect(() => {
     axios
       .get(`${getBaseURL()}api/cart/${customerId}`)
@@ -51,62 +151,73 @@ const OutstandingRequests = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.cartProducts]);*/
 
-  
-
   const [checked, setChecked] = useState([]);
   const onCheckedChange = (id, checkType) => {
     if (checkType) {
       setChecked([...checked, id]);
     } else {
-      setChecked(checked.filter(x => x != id));
+      setChecked(checked.filter((x) => x != id));
     }
-  }
+  };
 
   return (
     <>
-      <AcceptModal/>
-      <RejectModal/>
-          <h1>Outstanding Requests from Companies</h1>
-          <div>
-            <table>
-              <thead>
-                <tr>
-                  <th>Select</th>
-                  <th>Request Date</th>
-                  <th>Company Name</th>
-                  <th>Carbon Price (SGD/Tonnes)</th>
-                  <th>Carbon Quantity</th>
-                  <th>Requesting Reason</th>
-                  <th>Request Type (Buy/Sell)</th>
-                  <th>Actions</th>
-                </tr>
-              </thead>
-              <tbody>
-                {outstandingRequests.map((request) => (
-                  <tr key={request.id}>
-                    <td><input type="checkbox" onChange={(e) => onCheckedChange(request.id, e.target.checked)}/></td>
-                    <td>{request.request_date}</td>
-                    <td>{request.company_name}</td>
-                    <td>{request.carbon_price}</td>
-                    <td>{request.carbon_quantity}</td>
-                    <td>{request.reason}</td>
-                    <td>{request.type}</td>
-                    <td>
-                      <div className="button-container">
-                        <button className="accept-button" onClick={handleAccept}
-                        >
-                          Accept
-                        </button>
-                        <button className="reject-button" onClick={handleReject}>Reject</button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-          </div>
-        </>
+      <AcceptModal />
+      <RejectModal />
+      <h1>Outstanding Requests from Companies</h1>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Select</th>
+              <th>Request Date</th>
+              <th>Company Name</th>
+              <th>Carbon Price (SGD/Tonnes)</th>
+              <th>Carbon Quantity</th>
+              <th>Requesting Reason</th>
+              <th>Request Type (Buy/Sell)</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {outstandingRequests.map((request) => (
+              <tr key={request.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    onChange={(e) =>
+                      onCheckedChange(request.id, e.target.checked)
+                    }
+                  />
+                </td>
+                <td>{request.request_date}</td>
+                <td>{request.company_name}</td>
+                <td>{request.carbon_price}</td>
+                <td>{request.carbon_quantity}</td>
+                <td>{request.reason}</td>
+                <td>{request.type}</td>
+                <td>
+                  <div className="button-container">
+                    <button
+                      className="accept-button"
+                      onClick={() => handleAccept(request)}
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className="reject-button"
+                      onClick={() => handleReject(request)}
+                    >
+                      Reject
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 };
 
