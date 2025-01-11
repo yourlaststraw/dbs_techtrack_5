@@ -1,10 +1,11 @@
 import express from "express";
-import OutstandingRequest from "../models/outstandingRequest.js"; 
+import OutstandingRequest from "../models/outstandingRequest.js";
+import { verifyToken } from '../middleware/jwtAuth.js'
 
 const router = express.Router();
 
 // GET Request to retrieve outstanding requests for a specific company
-router.get("/outstanding-requests", async (req, res) => {
+router.get("/outstanding-requests", verifyToken, async (req, res) => {
   try {
     
     const companyId = req.company.id;
