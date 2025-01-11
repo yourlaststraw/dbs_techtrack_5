@@ -47,3 +47,57 @@
     font-size: 40px;
 
 }
+
+.accept-button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.accept-button:hover {
+    background-color: #45a049;
+}
+
+.reject-button {
+    background-color: #ce3a3a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.reject-button:hover {
+    background-color: #ab1010;
+}
+
+.form_content {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 20px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.create_form {
+    padding: 10px
+}
+
+input {
+    background-color: ccc;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border-width: 1px;
+    box-sizing: border-box;
+}
