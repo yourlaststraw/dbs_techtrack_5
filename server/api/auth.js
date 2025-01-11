@@ -1,12 +1,12 @@
 import express from "express";
 const router = express.Router()
-import auth from "../../middleware/auth"
+import auth from "../middleware/auth"
 const { check, validationResult } = require('express-validator')
 
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
-const companyAccount = require('../../models/companyAccount')
+const companyAccount = require('../models/companyAccount')
 
 
 // @route   POST /api/auth/register
