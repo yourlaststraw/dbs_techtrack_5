@@ -1,15 +1,16 @@
 import express from 'express';
 import CompanyAccount from '../models/companyAccount.js'; // Adjust the path as needed
+import { verifyToken } from '../middleware/jwtAuth.js'
 
 const router = express.Router();
 
 // GET request to retrieve company details by companyName
-router.get('/company-details', async (req, res) => {
+router.get('/company-details', verifyToken, async (req, res) => {
     try {
         const { companyId } = req.company.id; // Extract companyName from the request body
 
         if (!companyId) {
-            return res.status(400).json({ message: "companyName not present"});
+            return res.status(400).json({ message: "companyName not present" });
         }
 
         // Find the company by companyName
