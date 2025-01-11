@@ -36,6 +36,6 @@ const companyAccountSchema = new mongoose.Schema({
     }
 });
 
-const CompanyAccount = mongoose.model('company', companyAccountSchema)
+const CompanyAccount = mongoose.model('companyAccount', companyAccountSchema)
 
 module.exports = CompanyAccount;
