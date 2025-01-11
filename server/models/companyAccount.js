@@ -2,11 +2,6 @@
 import mongoose from 'mongoose'
 
 const companyAccountSchema = new mongoose.Schema({
-    // companyId: {
-    //     type: Number,
-    //     required: true,
-    //     unique: true
-    // },
     companyName: {
         type: String,
         required: true,
