@@ -1,10 +1,12 @@
 import express from "express";
 import OutstandingRequest from "../models/outstandingRequest.js"; 
+import RequestReceived from "../models/requestReceived.js";
+import { verifyToken } from '../middleware/jwtAuth.js'
 
 const router = express.Router();
 
 // GET Request to retrieve outstanding requests for a specific company
-router.get("/outstanding-requests", async (req, res) => {
+router.get("/outstanding-requests", verifyToken, async (req, res) => {
   try {
     
     const companyId = req.company.id;
@@ -15,7 +17,7 @@ router.get("/outstanding-requests", async (req, res) => {
     }
 
     // Query the database
-    const outstandingRequests = await OutstandingRequest.find({ companyId })
+    const outstandingRequests = await OutstandingRequest.find({ _id : companyId })
       .populate("companyId", "companyName") 
       .select(
         "requestDate carbonUnitPrice carbonQuantity requestReason requestType"
@@ -34,10 +36,12 @@ router.get("/outstanding-requests", async (req, res) => {
   }
 });
 
-router.post("/outstanding-requests", async (req, res) => {
+router.post("/outstanding-requests", verifyToken, async (req, res) => {
+  const companyId = req.company.id;
+
     try {
       const {
-        companyId,
+        requestedcompanyId,
         requestDate,
         carbonUnitPrice,
         carbonQuantity,
@@ -60,6 +64,7 @@ router.post("/outstanding-requests", async (req, res) => {
       // Create a new request in the OutstandingRequest table
       const newRequest = new OutstandingRequest({
         companyId,
+        requestedcompanyId,
         requestDate,
         carbonUnitPrice,
         carbonQuantity,
