@@ -13,23 +13,31 @@ function Login(props) {
   function handleClick() {
     if (validateInputs()) {
       const user = {
-        email: uname,
+        companyName: uname,
         password: password,
       };
-      let url = `api/users/login`;
+      let url = `http://localhost:8747/api/auth/register`;
+      const config = {
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }
+      const body = JSON.stringify(user)
       axios
-        .post(url, { ...user })
+        .post(url,body,config)
         .then((res) => {
           console.log(res);
-          if (res.data.length > 0) {
+          if (res.status == 200) {
             console.log("Logged in successfully");
             sessionStorage.setItem("isUserAuthenticated", true);
-            const user = res.data[0].isAdmin;
-            sessionStorage.setItem("customerId", res.data[0].userId);
-            sessionStorage.setItem("isAdmin", user ? true : false);
-            sessionStorage.setItem("jwt_token", res.data[0].token);
-            sessionStorage.setItem("jwt_refresh_token", res.data[0].refreshToken);
-            TokenRefresher(res.data[0].refreshToken);
+            /* const user = res.data[0].isAdmin; */
+            /* sessionStorage.setItem("customerId", res.data[0].userId);
+            sessionStorage.setItem("isAdmin", user ? true : false); */
+            localStorage.setItem("jwt_token", res.data.token);
+            const token = localStorage.getItem('token')
+            axios.defaults.headers.common['x-auth-token'] = token
+            /* sessionStorage.setItem("jwt_refresh_token", res.data[0].refreshToken); */
+            /* TokenRefresher(res.data[0].refreshToken); */
             props.setUserAuthenticatedStatus(user ? true : false, res.data[0].userId);
           } else {
             console.log("User not available");
@@ -37,6 +45,7 @@ function Login(props) {
         })
         .catch((err) => {
           console.log(err);
+          delete axios.defaults.headers.common['x-auth-token']
           console.log("error");
         });
     }
