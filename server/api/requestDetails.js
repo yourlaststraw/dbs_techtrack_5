@@ -7,6 +7,7 @@ const router = express.Router();
 
 // GET Request to retrieve outstanding requests for a specific company
 router.get("/outstanding-requests", verifyToken, async (req, res) => {
+router.get("/outstanding-requests", verifyToken, async (req, res) => {
   try {
     
     const companyId = req.company.id;
