@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import authRouter from "./api/auth.js"
-
+import getBalancesRouter from "./api/getBalances.js"
 
 dotenv.config();
 
@@ -22,19 +22,15 @@ try {
   process.exit(1);
 }
 
-// app.use(cors({
-//   origin: [process.env.ORIGIN],
-//   methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-//   credentials: true, // we need to enable cookies hence credentials need to be set to true
-// }));
 
 app.use(cors())
+
 
 app.use(cookieParser());
 app.use(express.json());
 
 app.use('/api/auth', authRouter)
-
+app.use('/api/balances', getBalancesRouter)
 
 app.get('/', (req, res) => res.send("API Running"))
 
