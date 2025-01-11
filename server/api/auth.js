@@ -1,12 +1,9 @@
 import express from "express";
 const router = express.Router()
-import auth from "../middleware/auth"
-const { check, validationResult } = require('express-validator')
-
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
-
-const companyAccount = require('../models/companyAccount')
+import { check, validationResult } from 'express-validator'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import companyAccount from '../models/companyAccount.js'
 
 
 // @route   POST /api/auth/register
@@ -70,33 +67,10 @@ router.post("/register", [
 
 })
 
-
-router.get("/", auth, async (req, res) => {
-    try {
-        /* jwt payload from register user route:
-        decoded = {
-            user: {
-                id: user.id
-            }
-        }
-        req object from auth middleware:
-        req.user = decoded.user
-        */
-        const userID = req.user.id
-        const user = await User.findById(userID).select('-password')
-
-        return res.json(user)
-
-    } catch (err) {
-        console.error(err.message)
-        return res.status(500).send("Server Error")
-    }
-})
-
 // @route   POST /api/auth/Login
 // @desc    Login user & Get back JWT
 // @access  Public
-router.post('/', [
+router.post('/login', [
     check("companyName", "Please enter name").not().isEmpty(),
     check("password", "Please enter password").not().isEmpty()
 ],
@@ -146,5 +120,4 @@ router.post('/', [
         }
     })
 
-module.exports = router;
-
+export default router;

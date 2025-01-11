@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const outstandingRequestSchema = new mongoose.Schema({
     companyId: {
@@ -36,11 +36,11 @@ const outstandingRequestSchema = new mongoose.Schema({
     },
 
     updatedDatetime: {
-        type:Date,
-        default:Date.now
+        type: Date,
+        default: Date.now
     }
 });
 
 const outstandingRequest = mongoose.model('outstandingRequest', outstandingRequestSchema)
 
-module.exports = outstandingRequest;
+export default outstandingRequest;

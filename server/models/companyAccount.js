@@ -1,11 +1,12 @@
-const mongoose = require('mongoose')
+
+import mongoose from 'mongoose'
 
 const companyAccountSchema = new mongoose.Schema({
-    companyId: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+    // companyId: {
+    //     type: Number,
+    //     required: true,
+    //     unique: true
+    // },
     companyName: {
         type: String,
         required: true,
@@ -31,11 +32,10 @@ const companyAccountSchema = new mongoose.Schema({
     },
 
     updatedDatetime: {
-        type:Date,
-        default:Date.now
+        type: Date,
+        default: Date.now
     }
 });
 
 const CompanyAccount = mongoose.model('companyAccount', companyAccountSchema)
-
-module.exports = CompanyAccount;
+export default CompanyAccount;

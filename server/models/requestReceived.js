@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const requestReceivedSchema = new mongoose.Schema({
     requestId: {
@@ -30,11 +30,11 @@ const requestReceivedSchema = new mongoose.Schema({
     },
 
     updatedDatetime: {
-        type:Date,
-        default:Date.now
+        type: Date,
+        default: Date.now
     }
 });
 
 const requestReceived = mongoose.model('requestReceived', requestReceivedSchema)
 
-module.exports = requestReceived;
+export default requestReceived
