@@ -10,6 +10,35 @@ const OutstandingRequests = () => {
     { id: 2, request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type" },
     { id: 3, request_date: "date", company_name: "company_name", carbon_price: "carbon_price", carbon_quantity: "quantity", reason: "Reason", type: "type" }
   ]);
+
+  const [currRequest, setCurrRequest] = useState(null);
+  const [showAccept, setShowAccept] = useState(true);
+  const handleAccept = (request) => {
+    setCurrRequest(request);
+    setShowAccept(false);
+  }
+  const AcceptModal = () => (
+    <div class="modal" hidden={showAccept}>
+      <div class="modal-content">
+        <span class="close" onClick={() => setShowAccept(true)}>&times;</span>
+        <p>Accept Request?</p>
+      </div>
+    </div>
+  )
+
+  const [showReject, setShowReject] = useState(true);
+  const handleReject = (request) => {
+    setCurrRequest(request);
+    setShowReject(false);
+  }
+  const RejectModal = () => (
+    <div class="modal" hidden={showReject}>
+      <div class="modal-content">
+        <span class="close" onClick={() => setShowReject(true)}>&times;</span>
+        <p>Reject Request?</p>
+      </div>
+    </div>
+  )
   
   /*useEffect(() => {
     axios
@@ -22,6 +51,8 @@ const OutstandingRequests = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.cartProducts]);*/
 
+  
+
   const [checked, setChecked] = useState([]);
   const onCheckedChange = (id, checkType) => {
     if (checkType) {
@@ -33,6 +64,8 @@ const OutstandingRequests = () => {
 
   return (
     <>
+      <AcceptModal/>
+      <RejectModal/>
           <h1>Outstanding Requests from Companies</h1>
           <div>
             <table>
@@ -60,11 +93,11 @@ const OutstandingRequests = () => {
                     <td>{request.type}</td>
                     <td>
                       <div className="button-container">
-                        <button className="accept-button"
+                        <button className="accept-button" onClick={handleAccept}
                         >
                           Accept
                         </button>
-                        <button className="reject-button">Reject</button>
+                        <button className="reject-button" onClick={handleReject}>Reject</button>
                       </div>
                     </td>
                   </tr>
