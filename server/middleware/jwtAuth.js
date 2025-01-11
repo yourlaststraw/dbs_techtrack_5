@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const verifyToken = (request, response, next) => {
     // Get token from header
-    const token = req.header('x-auth-token')
+    const token = request.header('x-auth-token')
 
     // Check if no token
     if (!token) {
@@ -21,8 +21,6 @@ export const verifyToken = (request, response, next) => {
             }
         }
         */
-
-        req.company.id
         next();
     });
 }

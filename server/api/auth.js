@@ -4,7 +4,7 @@ import { check, validationResult } from 'express-validator'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import companyAccount from '../models/companyAccount.js'
-import verifyToken from '../middleware/jwtAuth.js'
+import { verifyToken } from '../middleware/jwtAuth.js'
 
 
 // @route   POST /api/auth/register
