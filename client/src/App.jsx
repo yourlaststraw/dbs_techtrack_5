@@ -6,6 +6,7 @@ import Profile from "./pages/Profile";
 import AdminPanel from "./pages/AdminPanel";
 import LandingPage from "./pages/LandingPage";
 
+import OutstandingRequestsPage from "./pages/OutstandingRequestsPage";
 
 function App() {
   let [isUserAuthenticated, setUserAuthorization] = useState(
@@ -40,13 +41,13 @@ function App() {
     const path = window.location.pathname;
 
     // If user is not authenticated, show login/register form
-    // if (!isUserAuthenticated) {
-    //   return (
-    //     <LoginRegisterForm
-    //       setUserAuthenticatedStatus={setUserAuthenticatedStatus}
-    //     />
-    //   );
-    // }
+    /*if (!isUserAuthenticated) {
+      return (
+        <LoginRegisterForm
+          setUserAuthenticatedStatus={setUserAuthenticatedStatus}
+        />
+      );
+    }*/
 
     // Render pages based on pathname
     switch (path) {
@@ -56,6 +57,8 @@ function App() {
       case "/Landing":
         return <LandingPage />;
 
+      case "/outstanding":
+        return <OutstandingRequestsPage />
       case "/admin":
         return isAdmin ? (
           <AdminPanel />
